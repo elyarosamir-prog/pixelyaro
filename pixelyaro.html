@@ -1,0 +1,464 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>بكسليارو - Pixelyaro | استوديو بصري رقمي متنقل</title>
+<meta name="description" content="بكسليارو - استوديو بصري رقمي متنقل بيقدم بروموهات سينمائية وريلز إعلانية للأفراد والمحلات في قوص وقنا والأقصر.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cairo:wght@600;700;800;900&family=IBM+Plex+Sans+Arabic:wght@400;500;600&family=Outfit:wght@500;600;700;800&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --dark:#15161A;
+    --void:#0B0C0F;
+    --white:#FFFFFF;
+    --paper:#F4F4F6;
+    --accent:#3D5AFE;
+    --accent-soft:#5B7BFF;
+    --mist:#8A8A93;
+    --line-light: rgba(21,22,26,.10);
+    --line-dark: rgba(255,255,255,.12);
+    --font-ar: 'Cairo', 'Tahoma', sans-serif;
+    --font-body: 'IBM Plex Sans Arabic', 'Tahoma', sans-serif;
+    --font-lat: 'Outfit', sans-serif;
+  }
+  *{box-sizing:border-box; margin:0; padding:0;}
+  html{scroll-behavior:smooth;}
+  body{
+    font-family:var(--font-body);
+    background:var(--paper);
+    color:var(--dark);
+    overflow-x:hidden;
+    line-height:1.75;
+  }
+  .wrap{max-width:1040px; margin:0 auto; padding:0 28px;}
+  h1,h2,h3{font-family:var(--font-ar); font-weight:800;}
+
+  .on-dark{background:var(--void); color:var(--white);}
+
+  /* ---------- reveal-on-scroll ---------- */
+  .reveal{opacity:0; transform:translateY(18px); transition:opacity .7s ease, transform .7s ease;}
+  .reveal.in{opacity:1; transform:translateY(0);}
+  .reveal-stagger > *{opacity:0; transform:translateY(18px); transition:opacity .6s ease, transform .6s ease;}
+  .reveal-stagger.in > *{opacity:1; transform:translateY(0);}
+  .reveal-stagger.in > *:nth-child(1){transition-delay:.05s;}
+  .reveal-stagger.in > *:nth-child(2){transition-delay:.15s;}
+  .reveal-stagger.in > *:nth-child(3){transition-delay:.25s;}
+  .reveal-stagger.in > *:nth-child(4){transition-delay:.35s;}
+  .reveal-stagger.in > *:nth-child(5){transition-delay:.45s;}
+  .reveal-stagger.in > *:nth-child(6){transition-delay:.55s;}
+
+  /* ---------- hero ---------- */
+  header.hero{
+    background:radial-gradient(circle at 75% 20%, #1b1d24 0%, var(--void) 55%, #07080a 100%);
+    padding:76px 0 90px;
+    position:relative;
+    overflow:hidden;
+  }
+  .logo-wrap{margin-bottom:40px; opacity:0; transform:translateY(10px); animation:logoIn 1s ease .15s forwards;}
+  .logo-wrap svg{width:min(420px, 66vw); height:auto; display:block;}
+  @keyframes logoIn{to{opacity:1; transform:translateY(0);}}
+  .eyebrow{
+    font-size:14px; color:var(--accent-soft);
+    font-weight:600; letter-spacing:0.03em;
+    margin-bottom:20px; font-family:var(--font-ar);
+    opacity:0; animation:fadeUp .7s ease .4s forwards;
+  }
+  h1{
+    font-size:clamp(30px, 4.6vw, 50px);
+    line-height:1.35;
+    max-width:800px;
+    color:var(--white);
+    opacity:0; animation:fadeUp .7s ease .55s forwards;
+  }
+  h1 span{color:var(--accent-soft);}
+  .lede{
+    margin-top:24px; max-width:580px;
+    font-size:17px; color:#a9abb8;
+    opacity:0; animation:fadeUp .7s ease .7s forwards;
+  }
+  .hero-actions{
+    margin-top:38px; display:flex; gap:14px; flex-wrap:wrap;
+    opacity:0; animation:fadeUp .7s ease .85s forwards;
+  }
+  @keyframes fadeUp{from{opacity:0; transform:translateY(14px);} to{opacity:1; transform:translateY(0);}}
+
+  .btn{
+    display:inline-block; font-family:var(--font-ar); font-weight:700; font-size:15px;
+    padding:14px 26px; border-radius:6px; text-decoration:none;
+    border:1px solid transparent; transition:transform .2s ease, background .2s ease, box-shadow .2s ease;
+  }
+  .btn-primary{background:var(--accent); color:var(--white);}
+  .btn-primary:hover{background:var(--accent-soft); transform:translateY(-2px); box-shadow:0 10px 24px rgba(61,90,254,.35);}
+  .btn-ghost-dark{border-color:var(--line-dark); color:var(--white);}
+  .btn-ghost-dark:hover{border-color:var(--accent-soft); color:var(--accent-soft); transform:translateY(-2px);}
+  .btn-ghost-light{border-color:var(--line-light); color:var(--dark);}
+  .btn-ghost-light:hover{border-color:var(--accent); color:var(--accent); transform:translateY(-2px);}
+
+  section{padding:80px 0;}
+  section.on-dark{border-top:1px solid var(--line-dark); border-bottom:1px solid var(--line-dark);}
+  .kicker{
+    font-size:13px; font-weight:600; color:var(--mist);
+    letter-spacing:0.05em; margin-bottom:14px; font-family:var(--font-ar);
+  }
+  h2{font-size:clamp(24px, 3.2vw, 34px); max-width:640px; margin-bottom:46px;}
+
+  /* ---------- services ---------- */
+  .services{
+    display:grid; grid-template-columns:repeat(3, 1fr); gap:1px;
+    background:var(--line-light); border:1px solid var(--line-light); border-radius:10px;
+    overflow:hidden;
+  }
+  .service{background:var(--white); padding:30px 26px; transition:transform .25s ease, box-shadow .25s ease;}
+  .service:hover{transform:translateY(-6px); box-shadow:0 16px 30px rgba(21,22,26,.08); z-index:1; position:relative;}
+  .service .num{
+    font-family:var(--font-lat); color:var(--accent); font-size:14px; font-weight:700;
+    direction:ltr; display:block; margin-bottom:18px;
+  }
+  .service h3{font-size:18px; margin-bottom:10px;}
+  .service p{color:var(--mist); font-size:15px;}
+
+  /* ---------- route ---------- */
+  .route{position:relative; padding-top:44px;}
+  .route-line{position:absolute; top:56px; right:0; left:0; height:1px; background:var(--line-dark);}
+  .route-progress{
+    position:absolute; top:0; right:0; height:1px; width:0%;
+    background:linear-gradient(to left, var(--accent-soft), transparent 92%);
+    transition:width 1.4s cubic-bezier(.2,.7,.2,1);
+  }
+  .route.in .route-progress{width:100%;}
+  .route-cities{display:flex; justify-content:space-between; position:relative;}
+  .city{width:33%;}
+  .city:first-child{text-align:right;}
+  .city:nth-child(2){text-align:center;}
+  .city:last-child{text-align:left;}
+  .dot{
+    width:11px; height:11px; border-radius:50%; background:var(--accent-soft);
+    display:inline-block; position:relative; z-index:2; margin-bottom:16px;
+    box-shadow:0 0 0 6px var(--void);
+    transform:scale(0); transition:transform .4s ease;
+  }
+  .route.in .city:nth-child(1) .dot{transition-delay:.1s; transform:scale(1);}
+  .route.in .city:nth-child(2) .dot{transition-delay:.6s; transform:scale(1);}
+  .route.in .city:nth-child(3) .dot{transition-delay:1.1s; transform:scale(1);}
+  .city-name{font-family:var(--font-ar); font-size:18px; font-weight:800; display:block; color:var(--white);}
+  .city-note{font-size:13px; color:var(--mist); display:block; margin-top:4px;}
+  .route-caption{margin-top:38px; color:var(--mist); font-size:15px; max-width:560px;}
+
+  /* ---------- why ---------- */
+  .why{display:grid; grid-template-columns:1fr 1fr; gap:34px 48px;}
+  .why-item{border-right:2px solid var(--accent); padding-right:18px; transition:padding-right .25s ease;}
+  .why-item:hover{padding-right:24px;}
+  .why-item h3{font-size:17px; margin-bottom:8px;}
+  .why-item p{color:var(--mist); font-size:15px;}
+
+  /* ---------- portfolio ---------- */
+  .portfolio-grid{
+    display:grid; grid-template-columns:repeat(3, 1fr); gap:18px;
+  }
+  .pf-card{
+    background:var(--white); border-radius:10px; overflow:hidden;
+    border:1px solid var(--line-light);
+    transition:transform .3s ease, box-shadow .3s ease;
+  }
+  .pf-card:hover{transform:translateY(-6px); box-shadow:0 18px 32px rgba(21,22,26,.1);}
+  .pf-media{width:100%; aspect-ratio:4/3; object-fit:cover; display:block; background:#e9e9ec;}
+  .pf-card video.pf-media{object-fit:cover;}
+  .pf-cap{padding:14px 16px;}
+  .pf-cap strong{display:block; font-family:var(--font-ar); font-size:14px; margin-bottom:3px;}
+  .pf-cap span{display:block; font-size:12.5px; color:var(--mist);}
+  .pf-wide{grid-column:span 2;}
+  .pf-more{
+    margin-top:30px; display:flex; align-items:center; gap:10px; font-size:14px; color:var(--mist);
+  }
+  .pf-more a{color:var(--accent); font-weight:700; text-decoration:none;}
+  .pf-more a:hover{text-decoration:underline;}
+
+  /* ---------- founder ---------- */
+  .founder{display:flex; gap:36px; align-items:center; flex-wrap:wrap;}
+  .founder-photo{
+    width:150px; height:150px; border-radius:14px; object-fit:cover;
+    border:1px solid var(--line-light); flex-shrink:0;
+  }
+  .founder-text{flex:1; min-width:260px;}
+  .founder-mark{
+    font-family:var(--font-lat); font-weight:600; font-size:14px; color:var(--accent);
+    direction:ltr; border:1px solid var(--accent); padding:6px 12px; border-radius:6px;
+    white-space:nowrap; background:rgba(61,90,254,.06); display:inline-block; margin-bottom:14px;
+  }
+  .founder-text p{color:var(--dark); font-size:16px; max-width:560px;}
+  .founder-badges{margin-top:16px; display:flex; gap:10px; flex-wrap:wrap;}
+  .badge-link{
+    font-size:13px; font-weight:600; color:var(--dark); text-decoration:none;
+    border:1px solid var(--line-light); padding:7px 13px; border-radius:20px;
+    display:inline-flex; align-items:center; gap:6px; transition:border-color .2s ease, color .2s ease;
+  }
+  .badge-link:hover{border-color:var(--accent); color:var(--accent);}
+
+  /* ---------- footer ---------- */
+  footer{padding:76px 0 50px;}
+  .contact-grid{display:grid; grid-template-columns:1.3fr 1fr; gap:40px;}
+  footer h2{color:var(--white); margin-bottom:18px;}
+  footer .lede{margin-bottom:30px; color:#a9abb8;}
+  .contact-list{list-style:none;}
+  .contact-list li{
+    padding:16px 0; border-top:1px solid var(--line-dark);
+    display:flex; justify-content:space-between; align-items:center; font-size:15px;
+  }
+  .contact-list li:last-child{border-bottom:1px solid var(--line-dark);}
+  .contact-list span:first-child{color:var(--mist); font-family:var(--font-ar);}
+  .contact-list a{color:var(--white); text-decoration:none; font-weight:700;}
+  .foot-note{
+    margin-top:60px; padding-top:22px; border-top:1px solid var(--line-dark);
+    font-size:12px; color:var(--mist); direction:ltr; text-align:left; font-family:var(--font-lat);
+  }
+
+  /* ---------- floating whatsapp ---------- */
+  .float-wa{
+    position:fixed; bottom:22px; left:22px; z-index:50;
+    width:54px; height:54px; border-radius:50%;
+    background:var(--accent); color:var(--white);
+    display:flex; align-items:center; justify-content:center;
+    box-shadow:0 10px 24px rgba(61,90,254,.4);
+    opacity:0; transform:translateY(16px) scale(.9); pointer-events:none;
+    transition:opacity .3s ease, transform .3s ease, background .2s ease;
+  }
+  .float-wa.show{opacity:1; transform:translateY(0) scale(1); pointer-events:auto;}
+  .float-wa:hover{background:var(--accent-soft);}
+  .float-wa svg{width:26px; height:26px;}
+
+  @media(max-width:760px){
+    .services{grid-template-columns:1fr;}
+    .why{grid-template-columns:1fr;}
+    .contact-grid{grid-template-columns:1fr;}
+    .portfolio-grid{grid-template-columns:1fr 1fr;}
+    .pf-wide{grid-column:span 2;}
+    .route-cities{flex-direction:column; gap:26px; align-items:flex-start;}
+    .city, .city:first-child, .city:nth-child(2), .city:last-child{width:auto; text-align:right;}
+    .route-line{display:none;}
+    .founder{flex-direction:column; align-items:flex-start;}
+  }
+  @media(max-width:460px){
+    .portfolio-grid{grid-template-columns:1fr;}
+    .pf-wide{grid-column:span 1;}
+  }
+  a:focus-visible, button:focus-visible{outline:2px solid var(--accent); outline-offset:3px;}
+  @media (prefers-reduced-motion: reduce){
+    html{scroll-behavior:auto;}
+    .reveal, .reveal-stagger > *, .logo-wrap, .eyebrow, h1, .lede, .hero-actions{
+      opacity:1 !important; transform:none !important; animation:none !important;
+    }
+    .route-progress{transition:none;}
+    .dot{transition:none; transform:scale(1) !important;}
+  }
+</style>
+</head>
+<body>
+
+<header class="hero">
+  <div class="wrap">
+    <div class="logo-wrap">
+      <svg viewBox="0 0 1265 354" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Pixelyaro">
+        <g transform="translate(40,230.0)">
+          <path d="M37.6 -51.4V-75.8H68Q73.8 -75.8 78.6 -78.2Q83.4 -80.6 86.2 -85.2Q89 -89.8 89 -96.4Q89 -102.8 86.2 -107.4Q83.4 -112 78.6 -114.4Q73.8 -116.8 68 -116.8H37.6V-141.2H72.6Q86 -141.2 96.8 -135.8Q107.6 -130.4 113.9 -120.3Q120.2 -110.2 120.2 -96.4Q120.2 -82.6 113.9 -72.5Q107.6 -62.4 96.8 -56.9Q86 -51.4 72.6 -51.4ZM13.6 0V-141.2H45V0Z" fill="#FFFFFF" transform="translate(0.00,0)"/>
+          <path d="M13.6 0V-141.2H45V0Z" fill="#FFFFFF" transform="translate(131.60,0)"/>
+          <path d="M103.2 0 63.8 -63H60L5.6 -141.2H43L81.8 -82H85.6L140 0ZM3 0 55.2 -75.6 79.4 -62 38.8 0ZM86.8 -66.6 62.6 -80.2 101.8 -141.2H137.6Z" fill="#FFFFFF" transform="translate(196.20,0)"/>
+          <path d="M13.6 0V-141.2H45V0ZM37.6 0V-27.2H115V0ZM37.6 -59V-85.2H108V-59ZM37.6 -114.2V-141.2H114V-114.2Z" fill="#5B7BFF" transform="translate(345.20,0)"/>
+          <path d="M13.6 0V-141.2H45V0ZM37.8 0V-27.6H107.6V0Z" fill="#5B7BFF" transform="translate(474.20,0)"/>
+          <path d="M57 -52.6 2.6 -141.2H39L80.8 -69.6H57.4L99.2 -141.2H134.8L80 -52.6ZM53.2 0V-67H84.6V0Z" fill="#5B7BFF" transform="translate(592.40,0)"/>
+          <path d="M3 0 59 -141.2H87.4L142.8 0H109.6L67.2 -117.2H78.6L35.6 0ZM34.8 -25.6V-51.2H111.8V-25.6Z" fill="#5B7BFF" transform="translate(735.80,0)"/>
+          <path d="M37.6 -58.2V-81.4H67.4Q76.8 -81.4 81.9 -86.2Q87 -91 87 -99.2Q87 -106.8 82 -111.8Q77 -116.8 67.6 -116.8H37.6V-141.2H71.2Q85.2 -141.2 95.8 -135.9Q106.4 -130.6 112.4 -121.2Q118.4 -111.8 118.4 -99.6Q118.4 -87.2 112.4 -77.9Q106.4 -68.6 95.6 -63.4Q84.8 -58.2 70.2 -58.2ZM13.6 0V-141.2H45V0ZM90.4 0 46.4 -60.8 75.2 -68.6 127.6 0Z" fill="#5B7BFF" transform="translate(887.60,0)"/>
+          <path d="M81 2.4Q65 2.4 51.5 -3.2Q38 -8.8 27.8 -18.8Q17.6 -28.8 12 -42.1Q6.4 -55.4 6.4 -70.8Q6.4 -86.4 12 -99.6Q17.6 -112.8 27.6 -122.7Q37.6 -132.6 51.1 -138.1Q64.6 -143.6 80.6 -143.6Q96.4 -143.6 109.9 -138.1Q123.4 -132.6 133.5 -122.7Q143.6 -112.8 149.2 -99.5Q154.8 -86.2 154.8 -70.6Q154.8 -55.2 149.2 -41.9Q143.6 -28.6 133.6 -18.7Q123.6 -8.8 110.1 -3.2Q96.6 2.4 81 2.4ZM80.6 -26.2Q93.2 -26.2 102.7 -31.8Q112.2 -37.4 117.4 -47.5Q122.6 -57.6 122.6 -70.8Q122.6 -80.8 119.6 -88.9Q116.6 -97 111 -102.9Q105.4 -108.8 97.7 -111.9Q90 -115 80.6 -115Q68 -115 58.5 -109.5Q49 -104 43.8 -94.1Q38.6 -84.2 38.6 -70.8Q38.6 -60.8 41.6 -52.6Q44.6 -44.4 50.1 -38.5Q55.6 -32.6 63.4 -29.4Q71.2 -26.2 80.6 -26.2Z" fill="#5B7BFF" transform="translate(1024.00,0)"/>
+          <rect x="143.90" y="-189.00" width="34" height="34" rx="5.1" fill="#5B7BFF" transform="rotate(45 160.9 -172)"/>
+          <rect x="0" y="34" width="26" height="26" fill="#FFFFFF"/><rect x="34" y="34" width="26" height="26" fill="#FFFFFF"/><rect x="68" y="34" width="22" height="22" fill="#5B7BFF"/><rect x="98" y="34" width="18" height="18" fill="#5B7BFF" opacity=".75"/><rect x="124" y="34" width="14" height="14" fill="#5B7BFF" opacity=".5"/><rect x="146" y="34" width="10" height="10" fill="#5B7BFF" opacity=".3"/>
+        </g>
+      </svg>
+    </div>
+    <p class="eyebrow">استوديو بصري رقمي متنقل — قوص · قنا · الأقصر</p>
+    <h1>بنوصّل الكاميرا لمكانك، مش إنت اللي بتيجي <span>للاستوديو</span>.</h1>
+    <p class="lede">بكسليارو بيقدم بروموهات سينمائية وريلز إعلانية للمناسبات والمحلات التجارية، بمعدات احترافية وتسليم سريع، من غير ما تتحرك من مكانك.</p>
+    <div class="hero-actions">
+      <a class="btn btn-primary" href="https://wa.me/201203883003" target="_blank" rel="noopener">تواصل على واتساب</a>
+      <a class="btn btn-ghost-dark" href="#services">اعرف الخدمات</a>
+    </div>
+  </div>
+</header>
+
+<section id="services">
+  <div class="wrap">
+    <p class="kicker reveal">الخدمات</p>
+    <h2 class="reveal">باقات إنتاج مرنة لكل مناسبة وكل نشاط تجاري</h2>
+    <div class="services reveal-stagger">
+      <div class="service">
+        <span class="num">01</span>
+        <h3>مناسبات وحفلات</h3>
+        <p>تغطية سينمائية لحفلات التخرج، الخطوبة، أعياد الميلاد، والسبوع — تسليم رقمي سريع بجودة عالية.</p>
+      </div>
+      <div class="service">
+        <span class="num">02</span>
+        <h3>ريلز إعلانية للتجار</h3>
+        <p>فيديوهات كواليس إنتاج وريلز ترويجية للمحلات والمطاعم والعيادات، تُنشر مباشرة من موقع التصوير.</p>
+      </div>
+      <div class="service">
+        <span class="num">03</span>
+        <h3>هوية بصرية</h3>
+        <p>تصميم جرافيك وبناء براند بصري متكامل يواكب مخرجات التصوير ويرفع قيمة العميل التجارية.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="on-dark">
+  <div class="wrap">
+    <p class="kicker reveal">نطاق الحركة</p>
+    <h2 class="reveal" style="color:var(--white);">استوديو بيتحرك، مش مقر بيستنى</h2>
+    <div class="route reveal">
+      <div class="route-line"><div class="route-progress"></div></div>
+      <div class="route-cities">
+        <div class="city">
+          <span class="dot"></span>
+          <span class="city-name">قوص</span>
+          <span class="city-note">نقطة الانطلاق</span>
+        </div>
+        <div class="city">
+          <span class="dot"></span>
+          <span class="city-name">قنا</span>
+          <span class="city-note">عاصمة المحافظة</span>
+        </div>
+        <div class="city">
+          <span class="dot"></span>
+          <span class="city-name">الأقصر</span>
+          <span class="city-note">مقر الدراسة</span>
+        </div>
+      </div>
+    </div>
+    <p class="route-caption reveal">مفيش مقر ثابت ولا إيجار بيتحمّله العميل — الاستوديو بيوصل لموقع المناسبة أو مقر النشاط التجاري في التلات مدن، ويسلّم الشغل رقمياً من مكان التصوير نفسه.</p>
+  </div>
+</section>
+
+<section>
+  <div class="wrap">
+    <p class="kicker reveal">ليه بكسليارو</p>
+    <h2 class="reveal">فرق واضح عن التصوير بالموبايل والاستوديوهات التقليدية</h2>
+    <div class="why reveal-stagger">
+      <div class="why-item">
+        <h3>ثبات وجودة سينمائية حقيقية</h3>
+        <p>كاميرا بجيمبال ميكانيكي ثلاثي المحاور ومستشعر كبير يمسك التفاصيل حتى في الإضاءة الضعيفة، بعكس اهتزاز كاميرا الموبايل.</p>
+      </div>
+      <div class="why-item">
+        <h3>بدون تكلفة مقر</h3>
+        <p>مفيش إيجار أو مصاريف ثابتة بتتحمّلها الأسعار — التوفير ده بينعكس على تكلفة الباقة للعميل.</p>
+      </div>
+      <div class="why-item">
+        <h3>تسليم من موقع الحدث</h3>
+        <p>المعالجة والمونتاج بيحصلوا في نفس اليوم، والفيديو بيوصل للعميل أو بينزل على صفحته وهو لسه في المناسبة.</p>
+      </div>
+      <div class="why-item">
+        <h3>هوية بصرية متكاملة</h3>
+        <p>مش تصوير بس — تصميم وتلوين وبناء براند بيخلي مخرجات كل مناسبة أو محل تبان بشكل احترافي متكامل.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="on-dark" id="work">
+  <div class="wrap">
+    <p class="kicker reveal">شغلنا</p>
+    <h2 class="reveal" style="color:var(--white);">عينات حقيقية من شغل اتنفذ وسلّمناه فعلاً</h2>
+    <div class="portfolio-grid reveal-stagger">
+      <div class="pf-card pf-wide">
+        <video class="pf-media" src="https://pixelyaro-luxor-university-site2.vercel.app/assets/video/grad-project.mp4" muted loop playsinline controls></video>
+        <div class="pf-cap"><strong>فيديو مشروع تخرج — كلية الهندسة</strong><span>نُشر على الصفحة الرسمية للكلية</span></div>
+      </div>
+      <div class="pf-card">
+        <img class="pf-media" src="https://pixelyaro-luxor-university-site2.vercel.app/assets/img/image19.webp" alt="تصميم المتحف المصري الكبير" loading="lazy">
+        <div class="pf-cap"><strong>تصميم — المتحف المصري الكبير</strong><span>جرافيك ديزاين</span></div>
+      </div>
+      <div class="pf-card">
+        <img class="pf-media" src="https://pixelyaro-luxor-university-site2.vercel.app/assets/img/image16.webp" alt="هوية بصرية للإسكندرية" loading="lazy">
+        <div class="pf-cap"><strong>هوية بصرية — الإسكندرية</strong><span>براند ديزاين</span></div>
+      </div>
+      <div class="pf-card">
+        <img class="pf-media" src="https://pixelyaro-luxor-university-site2.vercel.app/assets/img/image14.webp" alt="بوستر ومونتاج معسكر حكايات من دندرة" loading="lazy">
+        <div class="pf-cap"><strong>بوستر ومونتاج — معسكر حكايات من دندرة</strong><span>تصميم ومونتاج</span></div>
+      </div>
+      <div class="pf-card pf-wide">
+        <video class="pf-media" src="https://pixelyaro-luxor-university-site2.vercel.app/assets/video/misc1.mp4" muted loop playsinline controls></video>
+        <div class="pf-cap"><strong>برومو فرح</strong><span>مونتاج ريلز مناسبات</span></div>
+      </div>
+      <div class="pf-card">
+        <img class="pf-media" src="https://pixelyaro-luxor-university-site2.vercel.app/assets/img/image20.webp" alt="بوستر وزارة الشباب والرياضة" loading="lazy">
+        <div class="pf-cap"><strong>بوستر رسمي — وزارة الشباب والرياضة</strong><span>صفحة "واي"</span></div>
+      </div>
+    </div>
+    <p class="pf-more reveal">المحفظة الكاملة وتفاصيل كل مشروع موجودة على <a href="https://www.behance.net/elyarosamir" target="_blank" rel="noopener">Behance</a></p>
+  </div>
+</section>
+
+<section style="padding-top:56px; padding-bottom:56px; border-top:1px solid var(--line-light);">
+  <div class="wrap founder reveal">
+    <img class="founder-photo" src="assets/founder.jpg" alt="اليارو سمير صلاح">
+    <div class="founder-text">
+      <span class="founder-mark">Elyaro Samir Salah</span>
+      <p>بكسليارو مشروع فردي بيديره اليارو سمير صلاح، طالب في كلية الحاسبات والمعلومات بجامعة الأقصر، وبيجمع بين خلفية تقنية في المعالجة الرقمية وخبرة عملية في الجرافيك ديزاين والمونتاج.</p>
+      <div class="founder-badges">
+        <a class="badge-link" href="https://www.behance.net/elyarosamir" target="_blank" rel="noopener">Behance ↗</a>
+        <span class="badge-link" style="cursor:default;">شهادة Microsoft معتمدة في التصميم</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer class="on-dark">
+  <div class="wrap">
+    <div class="contact-grid reveal">
+      <div>
+        <h2>محتاج تغطية مناسبة أو محتوى لمحلك؟</h2>
+        <p class="lede">ابعتلي تفاصيل المناسبة أو النشاط التجاري وهرد عليك بأقرب موعد متاح وسعر الباقة المناسبة.</p>
+        <a class="btn btn-primary" href="https://wa.me/201203883003" target="_blank" rel="noopener">راسلني على واتساب</a>
+      </div>
+      <ul class="contact-list">
+        <li><span>واتساب</span><a href="https://wa.me/201203883003" target="_blank" rel="noopener" dir="ltr">01203883003</a></li>
+        <li><span>إيميل</span><a href="mailto:elyarosamir@gmail.com" dir="ltr">elyarosamir@gmail.com</a></li>
+        <li><span>نطاق الخدمة</span><span style="color:var(--white); font-weight:700;">قوص، قنا، الأقصر</span></li>
+      </ul>
+    </div>
+    <p class="foot-note">Pixelyaro — mobile visual studio, Upper Egypt</p>
+  </div>
+</footer>
+
+<a class="float-wa" id="floatWa" href="https://wa.me/201203883003" target="_blank" rel="noopener" aria-label="تواصل على واتساب">
+  <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12.04 2C6.58 2 2.13 6.45 2.13 11.91c0 1.75.46 3.45 1.33 4.95L2.05 22l5.25-1.38a9.9 9.9 0 0 0 4.74 1.21h.01c5.46 0 9.91-4.45 9.91-9.91C21.96 6.45 17.5 2 12.04 2Zm5.8 14.1c-.24.68-1.41 1.3-1.95 1.38-.5.08-1.12.11-1.81-.11-.42-.13-.95-.31-1.64-.6-2.88-1.24-4.76-4.14-4.9-4.33-.14-.19-1.17-1.56-1.17-2.98 0-1.42.74-2.11 1-2.4.26-.29.57-.36.76-.36.19 0 .38 0 .55.01.17.01.41-.06.64.49.24.57.81 1.98.88 2.12.07.14.12.31.02.5-.1.19-.15.31-.29.48-.14.17-.3.37-.43.5-.14.14-.29.29-.12.57.17.29.76 1.25 1.63 2.02 1.12.99 2.06 1.3 2.35 1.45.29.14.46.12.63-.07.17-.19.72-.84.91-1.13.19-.29.38-.24.64-.14.26.1 1.65.78 1.94.92.29.14.48.21.55.33.07.12.07.69-.17 1.37Z"/></svg>
+</a>
+
+<script>
+(function(){
+  var items = document.querySelectorAll('.reveal, .reveal-stagger, .route');
+  if('IntersectionObserver' in window){
+    var io = new IntersectionObserver(function(entries){
+      entries.forEach(function(e){
+        if(e.isIntersecting){
+          e.target.classList.add('in');
+          io.unobserve(e.target);
+        }
+      });
+    }, {threshold:0.2});
+    items.forEach(function(el){ io.observe(el); });
+  } else {
+    items.forEach(function(el){ el.classList.add('in'); });
+  }
+
+  var fw = document.getElementById('floatWa');
+  var hero = document.querySelector('.hero');
+  function toggleFab(){
+    if(window.scrollY > hero.offsetHeight * 0.6){ fw.classList.add('show'); }
+    else{ fw.classList.remove('show'); }
+  }
+  window.addEventListener('scroll', toggleFab, {passive:true});
+  toggleFab();
+})();
+</script>
+
+</body>
+</html>
